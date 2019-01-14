@@ -13,7 +13,7 @@
  |
  |  Theme #9 by raiidens (@ tumblr)
  |  Published January 2016
- |  Ver. 1.00
+ |  Ver. 1.02
  |
  |  Edit as much as you like, but please do not
  |  claim as your own work, and leave credit somewhere.
@@ -148,6 +148,7 @@ iframe#tumblr_controls {
     top:0px;
     right:3px !important;
     position:fixed !important;
+    z-index:999999 !important;
     opacity: 0.3;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -966,7 +967,12 @@ blockquote img {
 </script>
 <script>
 $(document).ready(function(){
-    $('p').each(function() {
+    $("#wholecont").imagesLoaded(function() {
+        $("#wholecont").fadeIn(1500);
+    });
+});
+$(window).load(function() {
+	$('p').each(function() {
         var text = $(this).html();
         var regex = /\(Source:.*\)+/ig;
         text = text.replace(regex, '');
@@ -974,12 +980,7 @@ $(document).ready(function(){
         text = text.replace(regex, '');
         $(this).html(text);
     });
-    
-    $("#wholecont").imagesLoaded(function() {
-        $("#wholecont").fadeIn(1500);
-    });
-});
-$(window).load(function() {
+
     $("#postloader").fadeOut(1000);
     $("#postloadertext").fadeOut(1000);
     $("#content").animate({opacity: "1.0", top: "75"}, 1000);
